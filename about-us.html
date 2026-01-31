@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head><script>if(location.hostname==="bitplanes.pages.dev"){location.replace("https://bitplanes.org"+location.pathname+location.search)}</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Bit Planes: Purpose, Method and Editorial Standards</title>
+<meta name="description" content="Discover Bit Planes' mission, scope, and standards for explaining bitplane decomposition, compression, and digital image planes for a global audience.">
+<link rel="canonical" href="https://bitplanes.org/about-us">
+<link rel="stylesheet" href="/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "About Bit Planes",
+  "description": "Discover Bit Planes' mission, scope, and standards for explaining bitplane decomposition, compression, and digital image planes for a global audience.",
+  "url": "https://bitplanes.org/about-us",
+  "mainEntity": {
+    "@type": "Organization",
+    "name": "Bit Planes",
+    "url": "https://bitplanes.org",
+    "description": "A focused reference on bitplane analysis, decomposition, and compression for image processing",
+    "areaServed": "Worldwide"
+  }
+}
+</script>
+</head>
+<body>
+<header>
+<div class="header-inner">
+<div class="site-name">Bit Planes</div>
+<nav aria-label="Main navigation">
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/faq">FAQ</a></li>
+<li><a href="/about-us" aria-current="page">About Us</a></li>
+</ul>
+</nav>
+</div>
+</header>
+
+<nav aria-label="Breadcrumbs">
+<ul>
+<li><a href="/">Home</a></li>
+<li>About Us</li>
+</ul>
+</nav>
+
+<main>
+<h1>About Bit Planes: a focused reference on bitplane analysis</h1>
+
+<article id="mission">
+<h2>Mission and audience</h2>
+<p>Bit Planes exists to provide clear, accessible explanations of <strong>bit planes</strong>, <strong>bitplane decomposition</strong>, and related concepts in <strong>image processing planes</strong> for an international audience. Whether you are a student encountering binary representations of visual data for the first time, a researcher exploring <strong>bitplane compression</strong> techniques, or a practitioner implementing computational imaging workflows, this site offers foundational knowledge without requiring prior expertise in advanced mathematics or programming.</p>
+
+<p>Our mission is straightforward: demystify the binary structure underlying digital images. Every pixel in a grayscale or colour image can be decomposed into individual bit layers, each representing a specific level of significance in the binary encoding. Understanding these layers unlocks powerful techniques for compression, analysis, segmentation, and feature extraction used across medical imaging, satellite data processing, video encoding, and scientific visualisation.</p>
+
+<blockquote>
+<p>"Bitplane decomposition transforms a single image into a stack of binary planes, revealing patterns invisible in the composite view and enabling targeted manipulation of visual information at the bit level."</p>
+</blockquote>
+
+<p>We serve a global audience because image processing challenges are universal. A radiologist in Berlin analysing MRI scans, a remote sensing specialist in Nairobi processing satellite imagery, and a video engineer in São Paulo optimising streaming codecs all rely on the same fundamental principles of bit-level data representation. By focusing on concepts rather than proprietary tools or region-specific standards, Bit Planes provides knowledge applicable across borders, industries, and technical ecosystems.</p>
+
+<p>This site addresses common problems: confusion between colour channel separation and bitplane encoding, uncertainty about when bitplane techniques offer advantages over other methods, and difficulty finding explanations that balance technical accuracy with readability. We bridge the gap between academic papers that assume extensive background knowledge and superficial tutorials that omit critical details. For deeper technical standards and research, consult authoritative sources such as the <a href="https://www.iso.org/" rel="external">International Organization for Standardization</a> and the <a href="https://www.loc.gov/" rel="external">Library of Congress digital preservation guidelines</a>.</p>
+
+<p>Explore the <a href="/">main bit planes guide</a> for comprehensive coverage of decomposition workflows, or visit the <a href="/faq">FAQ on image segmentation techniques</a> for answers to specific questions about compression efficiency, colour channels, and practical applications.</p>
+</article>
+
+<article id="method">
+<h2>How we explain bit depth layers and decomposition</h2>
+<p>Our editorial method prioritises clarity, precision, and accessibility. Every explanation begins with a plain-language definition, followed by a description of how the concept functions within image processing workflows, and concludes with context about why it matters for practical applications. We avoid jargon where possible, but when technical terms are necessary—such as <strong>bit depth layers</strong>, <strong>digital image planes</strong>, or <strong>binary plane extraction</strong>—we define them explicitly and use them consistently throughout the site.</p>
+
+<p>Bitplane decomposition is inherently abstract: it involves separating a visual representation into constituent binary layers that are not directly visible to human observers. To make this tangible without relying on images or interactive demonstrations, we use structured descriptions, step-by-step workflows, and comparative tables. For example, when explaining <strong>grayscale plane conversion</strong>, we describe the process of isolating each bit position across all pixels, the resulting binary matrix for each plane, and how the most significant bit plane captures coarse structure while the least significant bit plane resembles noise.</p>
+
+<aside>
+<h3>Key terminology</h3>
+<dl>
+<dt>Bit plane</dt>
+<dd>A binary matrix representing a single bit position across all pixels in an image; the collection of all bit planes reconstructs the original image.</dd>
+<dt>Bit depth</dt>
+<dd>The number of bits used to represent the intensity or colour value of each pixel; an 8-bit grayscale image has 8 bit planes.</dd>
+<dt>Binary plane extraction</dt>
+<dd>The process of isolating individual bit planes from a multi-bit image representation for separate analysis or processing.</dd>
+<dt>Grayscale plane conversion</dt>
+<dd>Transforming a colour image into a single-channel intensity representation before bitplane decomposition, simplifying analysis.</dd>
+</dl>
+</aside>
+
+<p>We frame examples in terms of observable outcomes rather than implementation details. Instead of providing code snippets or algorithm pseudocode, we describe what happens at each stage: which data is extracted, how it is transformed, and what properties the resulting bit planes exhibit. This approach makes the content accessible to readers who understand image processing concepts but may not be programmers, while still providing sufficient detail for those who will implement these techniques.</p>
+
+<table>
+<caption>Core terms, definitions, and significance</caption>
+<thead>
+<tr>
+<th>Term</th>
+<th>Definition</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bit plane</td>
+<td>A binary layer representing one bit position across all pixels</td>
+<td>Fundamental unit for decomposition and bit-level analysis</td>
+</tr>
+<tr>
+<td>Bitplane decomposition</td>
+<td>Separating an image into individual bit planes</td>
+<td>Enables targeted compression, analysis, and feature extraction</td>
+</tr>
+<tr>
+<td>Bit depth layers</td>
+<td>The set of bit planes corresponding to an image's bit depth</td>
+<td>Determines information capacity and processing complexity</td>
+</tr>
+<tr>
+<td>Digital image planes</td>
+<td>Conceptual layers in digital image representation</td>
+<td>Encompasses bit planes, colour channels, and other decompositions</td>
+</tr>
+<tr>
+<td>Binary plane extraction</td>
+<td>Isolating specific bit planes from composite image data</td>
+<td>First step in bitplane-based processing workflows</td>
+</tr>
+<tr>
+<td>Grayscale plane conversion</td>
+<td>Reducing colour images to single-channel intensity</td>
+<td>Simplifies bitplane analysis by eliminating colour complexity</td>
+</tr>
+<tr>
+<td>Pixel bit manipulation</td>
+<td>Direct modification of individual bit values within pixels</td>
+<td>Enables precise control over image data at the lowest level</td>
+</tr>
+</tbody>
+</table>
+
+<p>Our explanations acknowledge the mathematical foundations of bitplane techniques—binary arithmetic, positional notation, matrix operations—but present them through descriptive language rather than equations. This makes the content searchable and readable for diverse audiences while maintaining technical accuracy. Readers seeking formal mathematical treatments can consult academic sources; our role is to provide the conceptual framework that makes those formal treatments comprehensible.</p>
+
+<p>We also recognise that <strong>pixel bit manipulation</strong> and related techniques exist within a broader ecosystem of image processing methods. Throughout the site, we contextualise bitplane approaches relative to alternatives such as spatial filtering, frequency domain transforms, and colour space conversions, helping readers understand when bitplane techniques are advantageous and when other methods may be more appropriate.</p>
+</article>
+
+<article id="standards">
+<h2>Quality, citations, and limitations</h2>
+<p>Bit Planes maintains rigorous editorial standards to ensure accuracy, reliability, and accessibility. Every technical claim is grounded in established image processing literature and industry practice. When we describe how <strong>bitplane analysis</strong> functions in medical imaging or satellite data processing, those descriptions reflect documented applications rather than speculation. We cite authoritative external sources—including standards bodies, research institutions, and peer-reviewed publications—to provide readers with pathways to deeper technical detail and verification.</p>
+
+<p>Our citation policy balances thoroughness with readability. We link to authoritative sources such as <a href="https://en.wikipedia.org/wiki/Digital_image" rel="external">Wikipedia's digital image article</a> for foundational concepts, standards organisations for technical specifications, and government or academic institutions for domain-specific applications. These external links serve two purposes: they allow readers to verify our explanations against established references, and they provide entry points for further research beyond the scope of this site.</p>
+
+<p>We embrace a no-JavaScript approach for core content accessibility. All explanations, tables, and navigation function without client-side scripting, ensuring compatibility with assistive technologies, text-based browsers, and restrictive network environments. This design choice reflects our commitment to universal access: knowledge about <strong>visual data layers</strong> and <strong>pixel bit manipulation</strong> should be available regardless of a reader's device capabilities, bandwidth constraints, or security policies. The only JavaScript on this site appears in JSON-LD structured data, which enhances search engine understanding without affecting human readers.</p>
+
+<table>
+<caption>Editorial standards, rationale, and verification methods</caption>
+<thead>
+<tr>
+<th>Standard</th>
+<th>Rationale</th>
+<th>How readers can verify</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Technical accuracy</td>
+<td>Ensures explanations reflect established image processing principles</td>
+<td>Cross-reference with cited external sources and academic literature</td>
+</tr>
+<tr>
+<td>Plain language</td>
+<td>Makes complex concepts accessible to international, non-specialist audiences</td>
+<td>Compare terminology usage with definitions provided in glossaries and tables</td>
+</tr>
+<tr>
+<td>No JavaScript for content</td>
+<td>Guarantees accessibility across devices, assistive technologies, and network conditions</td>
+<td>Disable JavaScript in browser; all content remains fully functional</td>
+</tr>
+<tr>
+<td>Authoritative citations</td>
+<td>Provides verification pathways and deeper technical resources</td>
+<td>Follow external links to standards bodies, research institutions, and encyclopedic sources</td>
+</tr>
+<tr>
+<td>Consistent terminology</td>
+<td>Reduces confusion and improves comprehension across multiple pages</td>
+<td>Check term definitions in glossaries; usage remains uniform throughout site</td>
+</tr>
+<tr>
+<td>International scope</td>
+<td>Addresses universal image processing concepts applicable across regions and industries</td>
+<td>Note absence of region-specific tools, proprietary systems, or localised standards</td>
+</tr>
+</tbody>
+</table>
+
+<p>We acknowledge the limitations of simplified explanations. Bitplane decomposition involves nuances—edge cases in bit depth conversion, interactions between compression algorithms and bit plane statistics, hardware-specific optimisations—that cannot be fully addressed in a general reference. Our goal is not to replace comprehensive textbooks or technical specifications, but to provide a clear conceptual foundation that prepares readers to engage with those more detailed resources effectively.</p>
+
+<p>This site does not cover implementation details, programming languages, or specific software tools. Those topics are better served by documentation, tutorials, and community resources that can be updated frequently as technologies evolve. By focusing on enduring concepts—the nature of bit planes, the logic of decomposition, the applications of bit-level analysis—we provide knowledge that remains relevant regardless of which tools or platforms readers ultimately use.</p>
+
+<p>Return to the <a href="/">bitplane compression overview</a> for practical workflows, or explore the <a href="/faq">bit depth layers questions</a> for targeted answers about compression efficiency, colour channel differences, and segmentation techniques.</p>
+</article>
+
+<article id="contact">
+<h2>Contact and reuse</h2>
+<p>Bit Planes is a reference resource, not a commercial service or interactive platform. We do not offer consulting, implementation support, or custom analysis. For technical questions about <strong>bitplane encoding</strong> or <strong>color channel separation</strong>, the FAQ page addresses the most common inquiries. For questions about image processing applications in specific domains—medical imaging, satellite analysis, video compression—we recommend consulting domain-specific professional organisations and research communities.</p>
+
+<p>If you identify a technical error, ambiguous explanation, or broken external link, you may contact the site maintainer at <strong>contact@bitplanes.org</strong>. Please include the specific page URL and a clear description of the issue. We review all substantive feedback but cannot guarantee individual responses or rapid updates. This site is maintained as a volunteer effort to support the image processing community, and update frequency reflects available time and resources.</p>
+
+<p>Content on Bit Planes is provided for educational and reference purposes. You may link to any page, quote brief excerpts with attribution, or use the site as a learning resource in academic or professional settings. We do not require permission for standard educational fair use, but we appreciate attribution when our explanations inform your work. If you are writing about bitplane techniques and find our descriptions useful, a citation or link helps others discover this resource.</p>
+
+<table>
+<caption>Topic areas, recommended pages, and information scope</caption>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Best page</th>
+<th>What you'll find</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bitplane decomposition workflows</td>
+<td><a href="/">Home</a></td>
+<td>Step-by-step explanations, comparison tables, application domains</td>
+</tr>
+<tr>
+<td>Compression and encoding questions</td>
+<td><a href="/faq">FAQ</a></td>
+<td>Answers about efficiency, colour channels, segmentation techniques</td>
+</tr>
+<tr>
+<td>Editorial standards and scope</td>
+<td><a href="/about-us">About Us</a></td>
+<td>Mission, methodology, citation policy, limitations, contact information</td>
+</tr>
+<tr>
+<td>Colour channel vs. bitplane differences</td>
+<td><a href="/">Home</a></td>
+<td>Detailed comparison table with semantic distinctions</td>
+</tr>
+<tr>
+<td>International applications</td>
+<td><a href="/">Home</a></td>
+<td>Medical imaging, satellite data, video compression, computational imaging</td>
+</tr>
+<tr>
+<td>Terminology definitions</td>
+<td>All pages</td>
+<td>Glossaries, tables, and inline definitions for key terms</td>
+</tr>
+</tbody>
+</table>
+
+<p>We do not collect personal information, use analytics tracking, or employ advertising. This site exists solely to explain bitplane concepts clearly and accurately. There are no newsletters, user accounts, or interactive features that would require data collection. Your use of this site is private by design: no cookies, no tracking scripts, no third-party integrations beyond the external authoritative links we cite for verification and further reading.</p>
+
+<p>The content structure and terminology on Bit Planes reflect international English conventions (en-GB) to serve a global audience. We avoid region-specific idioms, units, or cultural references that might create barriers for readers in different countries. Image processing is a universal discipline, and our explanations aim to be equally accessible whether you are reading in London, Lagos, Lima, or Lahore.</p>
+
+<p>For ongoing learning about bit planes, we recommend starting with the <a href="/">main guide</a>, which covers decomposition workflows, practical applications, and comparative analysis. The <a href="/faq">FAQ</a> addresses specific questions about compression, colour channels, and segmentation. This About page provides context about our editorial approach and limitations. Together, these three pages form a focused reference that balances breadth, depth, and accessibility for an international audience seeking to understand bitplane analysis and its applications in modern image processing.</p>
+</article>
+
+</main>
+
+<footer>
+<p>&copy; 2026 Bit Planes</p>
+</footer>
+
+</body>
+</html>
