@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head><script>if(location.hostname==="bitplanes.pages.dev"){location.replace("https://bitplanes.org"+location.pathname+location.search)}</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bit Planes Guide: Decomposition, Depth Layers & Uses</title>
+<meta name="description" content="Learn bit planes, bitplane decomposition, and bit depth layers for compression, analysis, and segmentation in international image processing workflows.">
+<link rel="canonical" href="https://bitplanes.org/">
+<link rel="stylesheet" href="style.css">
+<meta property="og:title" content="Bit Planes Guide: Decomposition, Depth Layers & Uses">
+<meta property="og:description" content="Learn bit planes, bitplane decomposition, and bit depth layers for compression, analysis, and segmentation in international image processing workflows.">
+<meta property="og:url" content="https://bitplanes.org/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Bit Planes Guide: Decomposition, Depth Layers & Uses">
+<meta name="twitter:description" content="Learn bit planes, bitplane decomposition, and bit depth layers for compression, analysis, and segmentation in international image processing workflows.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Bit Planes",
+  "url": "https://bitplanes.org/",
+  "description": "Expert reference on bit planes, bitplane decomposition, and digital image processing techniques for international audiences.",
+  "areaServed": "Worldwide"
+}
+</script>
+</head>
+<body>
+<header>
+<div class="header-inner">
+<div class="site-name">Bit Planes</div>
+<nav aria-label="Main navigation">
+<ul>
+<li><a href="/" aria-current="page">Home</a></li>
+<li><a href="/faq">FAQ</a></li>
+<li><a href="/about-us">About Us</a></li>
+</ul>
+</nav>
+</div>
+</header>
+
+<main>
+<h1>Bit planes for image processing: decomposition, analysis, compression</h1>
+
+<article id="intro">
+<h2>What bit planes are and why they matter</h2>
+<p>Bit planes are fundamental structures in digital image processing that represent individual binary layers extracted from the bit-level representation of pixel values. Each bit plane corresponds to a specific bit position across all pixels in an image, creating a binary map that reveals patterns invisible in the composite image. Understanding bit planes is essential for professionals working with digital image planes, compression algorithms, and advanced analysis techniques used internationally in medical imaging, satellite data processing, and computational photography.</p>
+
+<p>When we examine a grayscale image with 8-bit depth, each pixel value ranges from 0 to 255. These values can be decomposed into eight separate bit planes, numbered from 0 (least significant bit) to 7 (most significant bit). The most significant bit plane contains the coarsest information about image structure, while lower bit planes capture finer details and noise. This hierarchical organisation of bit depth layers enables selective processing, where different planes can be compressed, filtered, or analysed independently based on their contribution to visual quality.</p>
+
+<blockquote>
+<p>Binary plane extraction transforms a multi-valued image into a set of binary images, each representing the contribution of a single bit position. This decomposition is reversible: combining all bit planes with appropriate weighting reconstructs the original image perfectly.</p>
+</blockquote>
+
+<p>The practical value of bitplane analysis extends across multiple domains. In medical imaging, radiologists use bit plane techniques to enhance subtle features in X-rays and MRI scans. Satellite imaging systems employ bitplane decomposition to optimise transmission bandwidth when sending data from orbit to ground stations. Video compression standards leverage the differential importance of bit planes to achieve higher compression ratios without perceptible quality loss. Even watermarking and steganography techniques exploit the lower bit planes, where modifications remain imperceptible to human observers.</p>
+
+<p>Digital image planes differ from colour channels in fundamental ways. Whilst colour channel separation divides an image into red, green, and blue components (or other colour spaces), bit planes divide the numerical representation of each pixel value into its constituent binary digits. A single colour channel can itself be decomposed into multiple bit planes. For instance, the red channel of an RGB image with 8-bit depth per channel yields eight separate red bit planes. This nested structure allows for sophisticated multi-level processing strategies.</p>
+
+<p>The significance of each bit plane varies dramatically. The most significant bit plane (bit 7 in an 8-bit image) accounts for half the total intensity range and contains the primary structural information. Removing or corrupting this plane produces severe image degradation. Conversely, the least significant bit plane (bit 0) contributes only one part in 256 to each pixel value and often appears noise-like, containing minimal perceptually relevant information. This asymmetry is exploited in compression algorithms that allocate more bits to encode higher bit planes whilst using fewer bits or even discarding lower planes entirely.</p>
+
+<p>Understanding bit planes requires familiarity with binary number representation and how digital systems encode visual information. Each pixel's intensity is stored as a binary number, and bit plane decomposition simply reorganises this data by bit position rather than by pixel location. This reorganisation often reveals spatial patterns and correlations that are obscured in the original representation, making bit planes valuable for texture analysis, pattern recognition, and image segmentation techniques.</p>
+
+<p>International standards bodies including the <a href="https://www.nist.gov/" rel="external">National Institute of Standards and Technology</a> and organisations documented in resources such as <a href="https://en.wikipedia.org/wiki/Bit_plane" rel="external">Wikipedia's bit plane article</a> provide technical specifications for bit plane operations. The <a href="https://www.britannica.com/" rel="external">Encyclopaedia Britannica</a> offers historical context on digital image processing development. For deeper exploration of specific techniques, visit our <a href="/faq">FAQ on bitplane decomposition</a> or learn about our <a href="/about-us">editorial standards and scope</a>.</p>
+
+<p>Modern computational imaging systems increasingly rely on bit plane techniques as image resolutions grow and processing efficiency becomes critical. Graphics processing units and specialised image processors implement bit plane operations in hardware, enabling real-time decomposition and analysis of high-resolution video streams. As imaging technology advances, the fundamental principles of bit planes remain constant, providing a stable foundation for innovation in visual data processing across scientific, commercial, and creative applications worldwide.</p>
+</article>
+
+<section id="workflow">
+<h2>A practical workflow for bitplane decomposition</h2>
+
+<p>Bitplane decomposition follows a systematic process that transforms a grayscale or single-channel image into a set of binary planes. The workflow begins with grayscale plane conversion if the source image is in colour. This conversion typically uses luminance-weighted averaging of colour channels, though some applications process each colour channel independently. Once a single-channel representation is established, the decomposition proceeds bit by bit through the pixel values.</p>
+
+<p>The fundamental workflow for extracting bit planes from an 8-bit grayscale image involves these ordered steps:</p>
+
+<ol>
+<li><strong>Prepare the source image:</strong> Ensure the image is in a single-channel format, typically grayscale with pixel values ranging from 0 to 255. If starting with a colour image, convert to grayscale using standard luminance formulas or extract a single colour channel for processing. Verify bit depth and adjust if necessary to match the target decomposition depth.</li>
+
+<li><strong>Initialise bit plane storage:</strong> Create eight separate binary planes (for 8-bit images), each with the same dimensions as the source image. These planes will store boolean or binary values representing the presence (1) or absence (0) of each bit position across all pixels.</li>
+
+<li><strong>Iterate through each pixel:</strong> For every pixel in the source image, retrieve its integer intensity value. This value will be decomposed into its binary representation across the eight bit planes.</li>
+
+<li><strong>Extract individual bits:</strong> For each pixel value, perform pixel bit manipulation to isolate each bit position. Starting with bit 0 (least significant), test whether that bit is set in the pixel value. Record a 1 in the corresponding bit plane if the bit is set, or 0 if not. Repeat for all eight bit positions.</li>
+
+<li><strong>Populate bit plane arrays:</strong> As each bit is extracted, place the binary value in the corresponding position of the appropriate bit plane. After processing all pixels, each bit plane contains a complete binary image representing one bit position across the entire source image.</li>
+
+<li><strong>Verify decomposition:</strong> Optionally reconstruct the original image by combining bit planes with appropriate weighting (bit 0 weighted by 1, bit 1 by 2, bit 2 by 4, and so forth up to bit 7 weighted by 128). The reconstructed image should match the source exactly if decomposition was performed correctly.</li>
+
+<li><strong>Process or analyse individual planes:</strong> With decomposition complete, individual bit planes can be compressed, filtered, analysed for patterns, or processed independently according to application requirements.</li>
+
+<li><strong>Recombine if needed:</strong> When processing is complete, bit planes can be recombined using weighted summation to produce a modified version of the original image, potentially with enhanced features, reduced noise, or improved compression characteristics.</li>
+</ol>
+
+<aside>
+<h3>Key definitions for bitplane workflows</h3>
+<dl>
+<dt>Bit position</dt>
+<dd>The location of a binary digit within a multi-bit number, numbered from 0 (rightmost, least significant) to 7 (leftmost, most significant) in an 8-bit value.</dd>
+
+<dt>Binary plane</dt>
+<dd>A two-dimensional array of binary values (0 or 1) representing a single bit position across all pixels in an image.</dd>
+
+<dt>Bit masking</dt>
+<dd>A technique using bitwise logical operations to isolate specific bit positions within a multi-bit value during pixel bit manipulation.</dd>
+
+<dt>Weighted recombination</dt>
+<dd>The process of reconstructing a multi-bit image by multiplying each bit plane by its positional weight (powers of two) and summing the results.</dd>
+</dl>
+</aside>
+
+<p>The efficiency of bitplane decomposition depends significantly on how pixel bit manipulation is implemented. In software, bitwise AND operations with appropriate masks efficiently extract individual bits. For example, to extract bit 3 from a pixel value, a mask of binary 00001000 (decimal 8) isolates that position. Hardware implementations often use parallel processing to extract all bit positions simultaneously, dramatically accelerating decomposition for real-time applications.</p>
+
+<p>Grayscale plane conversion deserves special attention when working with colour images. The standard luminance formula weights red, green, and blue channels according to human visual perception: approximately 30% red, 59% green, and 11% blue. However, some image processing planes applications benefit from alternative conversions. Medical imaging might preserve the channel with highest diagnostic value, whilst satellite imagery might select channels based on spectral characteristics of interest.</p>
+
+<p>Advanced workflows incorporate selective bit plane processing. Rather than decomposing all eight planes, applications might extract only the four most significant planes for compression, discarding lower planes that contribute primarily noise. Adaptive techniques analyse image content to determine optimal bit plane selection, balancing quality against processing efficiency. These selective approaches are particularly valuable in bandwidth-constrained environments such as remote sensing and telemedicine.</p>
+
+<p>The spatial patterns visible in individual bit planes provide diagnostic information about image characteristics. High bit planes typically show smooth regions corresponding to major image structures, whilst low bit planes appear noisy and texture-rich. Anomalies in expected patterns can indicate compression artefacts, sensor defects, or intentional modifications such as watermarks. Forensic image analysis exploits these patterns to detect tampering and verify authenticity.</p>
+
+<p>Bitplane decomposition workflows integrate naturally with other image processing operations. Edge detection algorithms can operate on selected bit planes to emphasise features at specific intensity scales. Morphological operations applied to individual planes enable multi-scale structural analysis. Frequency domain transforms of bit planes reveal periodicities and patterns invisible in spatial domain analysis. This flexibility makes bit plane techniques foundational to comprehensive image processing planes methodologies used internationally across scientific and commercial applications.</p>
+</section>
+
+<section id="comparison-table">
+<h2>Bit planes vs colour channel separation</h2>
+
+<p>Understanding the distinction between bit planes and colour channel separation is essential for effective image processing. Both techniques decompose images into constituent parts, but they operate on fundamentally different principles and serve distinct purposes. Colour channel separation divides an image based on chromatic information, splitting RGB, CMYK, or other colour space representations into independent channels. Bitplane encoding, conversely, decomposes the numerical representation of pixel values into binary layers regardless of colour space.</p>
+
+<p>The confusion between these concepts often arises because both create multiple derived images from a single source. However, colour channels represent different wavelengths or perceptual dimensions of light, whilst bit planes represent different magnitudes of contribution to a single intensity value. A colour image can be separated into channels, and then each channel can be further decomposed into bit planes, creating a two-level hierarchy of visual data layers.</p>
+
+<p>Consider an RGB image with 8-bit depth per channel. Colour channel separation produces three grayscale images representing red, green, and blue intensity distributions. Each of these channels can then undergo bitplane decomposition, yielding eight bit planes per channel, for a total of twenty-four bit planes. This nested structure demonstrates that colour channels and bit planes are complementary rather than alternative techniques.</p>
+
+<table>
+<caption>Comparison of colour channel separation and bitplane encoding techniques</caption>
+<thead>
+<tr>
+<th scope="col">Characteristic</th>
+<th scope="col">Colour Channel Separation</th>
+<th scope="col">Bitplane Encoding</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">Decomposition basis</th>
+<td>Chromatic or perceptual colour dimensions (RGB, HSV, CMYK, etc.)</td>
+<td>Binary digit positions within pixel intensity values</td>
+</tr>
+<tr>
+<th scope="row">Number of components</th>
+<td>Typically 3-4 channels depending on colour space</td>
+<td>Equals bit depth: 8 planes for 8-bit images, 16 for 16-bit</td>
+</tr>
+<tr>
+<th scope="row">Value range per component</th>
+<td>Full intensity range (0-255 for 8-bit channels)</td>
+<td>Binary only: 0 or 1 at each pixel location</td>
+</tr>
+<tr>
+<th scope="row">Primary applications</th>
+<td>Colour correction, channel mixing, colour space conversion, chromatic analysis</td>
+<td>Compression, watermarking, noise analysis, multi-resolution processing</td>
+</tr>
+<tr>
+<th scope="row">Visual appearance</th>
+<td>Grayscale images showing spatial distribution of each colour component</td>
+<td>Binary images showing contribution of each bit position; higher planes show structure, lower planes appear noisy</td>
+</tr>
+<tr>
+<th scope="row">Information hierarchy</th>
+<td>All channels typically contribute equally to perceived image quality</td>
+<td>Strong hierarchy: most significant bit planes contain majority of visual information</td>
+</tr>
+<tr>
+<th scope="row">Reconstruction method</th>
+<td>Channels combined directly in target colour space</td>
+<td>Bit planes weighted by powers of two (1, 2, 4, 8, ...) and summed</td>
+</tr>
+<tr>
+<th scope="row">Compression potential</th>
+<td>Channels often compressed together or with similar priority</td>
+<td>Lower bit planes can be heavily compressed or discarded with minimal quality impact</td>
+</tr>
+</tbody>
+</table>
+
+<p>The hierarchical nature of bit planes contrasts sharply with the relatively equal importance of colour channels. In RGB images, all three channels contribute substantially to perceived image quality, and severe degradation of any single channel produces obvious colour shifts or loss of detail. Bit planes, however, exhibit exponential importance: the most significant bit plane accounts for half the total intensity range, whilst the least significant bit contributes only 1/256th of each pixel value.</p>
+
+<p>This hierarchical property makes bitplane encoding particularly valuable for progressive transmission and adaptive compression. An image can be transmitted starting with the most significant bit planes, allowing a coarse preview to appear quickly, with refinement as additional planes arrive. Colour channel separation does not naturally support this progressive refinement, as all channels are needed to reproduce accurate colour.</p>
+
+<p>Visual data layers created by colour channel separation preserve spatial relationships and edge information within each channel. A strong edge in the original image typically appears as a strong edge in each colour channel, though the exact intensity profile may vary. Bit planes show different behaviour: high-order bit planes preserve edge information and major structures, whilst low-order planes often appear noise-like, with edges fragmented or absent. This difference reflects the fundamentally different information encoded in each decomposition type.</p>
+
+<p>Practical applications often combine both techniques. Video compression standards separate colour and luminance information (a form of channel separation), then apply bit plane-aware encoding to prioritise perceptually important information. Medical imaging systems might process specific colour channels to highlight tissue types, then use bit plane analysis on those channels to detect subtle pathological features. Satellite imagery processing frequently separates spectral bands (analogous to colour channels) and applies bitplane compression to each band independently for efficient storage and transmission.</p>
+
+<p>The computational cost of these operations differs substantially. Colour channel separation is typically a simple memory reorganisation or direct access operation, requiring minimal processing. Bitplane decomposition requires bit-level manipulation for every pixel, involving masking and shifting operations that are more computationally intensive, though still efficient on modern processors. Hardware implementations can perform both operations rapidly, but the algorithmic complexity of bitplane encoding remains higher.</p>
+
+<p>Understanding when to use each technique requires considering the processing goal. For colour correction, white balance adjustment, or chromatic aberration correction, colour channel separation is the appropriate tool. For compression, watermarking, multi-resolution analysis, or exploiting the differential importance of information layers, bitplane encoding provides superior capabilities. Many sophisticated image processing planes workflows employ both techniques in sequence, leveraging the strengths of each to achieve results impossible with either alone.</p>
+
+<p>International standards for image formats and compression reflect these distinctions. JPEG compression operates on colour-separated channels (typically YCbCr), applying frequency domain transforms rather than explicit bit plane decomposition, though the quantisation process implicitly prioritises information similar to bit plane hierarchies. PNG compression works on colour channels but can exploit bit depth reduction, effectively discarding lower bit planes. JPEG 2000 and other wavelet-based formats create multi-resolution representations that share conceptual similarities with bit plane hierarchies whilst operating through different mathematical frameworks.</p>
+</section>
+
+<section id="applications">
+<h2>Where bitplane techniques are used internationally</h2>
+
+<p>Bitplane techniques have found widespread adoption across diverse fields where efficient image processing, analysis, and compression are critical. The international scope of these applications reflects the fundamental nature of bit plane operations, which remain effective regardless of image content, cultural context, or geographic location. From medical diagnostics in urban hospitals to satellite monitoring of remote regions, bitplane analysis provides essential capabilities for managing and extracting value from visual data.</p>
+
+<p>Medical imaging represents one of the most critical application domains for bitplane techniques. Radiological images from X-ray, CT, and MRI systems contain subtle intensity variations that indicate pathological conditions. Bitplane decomposition allows radiologists and automated diagnostic systems to enhance specific intensity ranges, suppress noise in lower bit planes, and apply differential processing to features at different scales. Telemedicine applications use bitplane compression to transmit diagnostic images efficiently over limited bandwidth connections, ensuring that the most significant visual information arrives first for rapid preliminary assessment.</p>
+
+<p>Satellite imagery and remote sensing rely heavily on computational imaging techniques including bit plane operations. Earth observation satellites generate enormous volumes of multi-spectral image data that must be compressed for transmission to ground stations. Bitplane compression algorithms selectively encode higher bit planes with greater fidelity whilst aggressively compressing or discarding lower planes that contain primarily sensor noise. This approach maximises the scientific value transmitted per bit of bandwidth, enabling more frequent imaging and broader coverage of the Earth's surface for environmental monitoring, disaster response, and resource management.</p>
+
+<p>Video compression standards employed internationally for broadcast, streaming, and storage incorporate bit plane concepts, though often implicitly rather than through direct decomposition. The quantisation stages in MPEG, H.264, and newer codecs effectively discard information from lower bit planes in frequency domain representations. Understanding bit plane hierarchies informs the design of these quantisation matrices, ensuring that perceptually important information is preserved whilst less significant data is compressed aggressively. The result is the high-quality video streaming that has become ubiquitous in international communications.</p>
+
+<table>
+<caption>International application domains for bitplane techniques</caption>
+<thead>
+<tr>
+<th scope="col">Domain</th>
+<th scope="col">Typical Bitplane Use</th>
+<th scope="col">Key Benefit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">Medical imaging</th>
+<td>Enhancement of diagnostic features, noise suppression, progressive transmission for telemedicine</td>
+<td>Improved diagnostic accuracy and efficient use of limited bandwidth</td>
+</tr>
+<tr>
+<th scope="row">Satellite remote sensing</th>
+<td>Compression for downlink transmission, multi-resolution analysis, change detection</td>
+<td>Maximised data return from bandwidth-constrained satellite links</td>
+</tr>
+<tr>
+<th scope="row">Video compression</th>
+<td>Implicit bit plane prioritisation through quantisation, progressive encoding</td>
+<td>High compression ratios with maintained perceptual quality</td>
+</tr>
+<tr>
+<th scope="row">Digital watermarking</th>
+<td>Embedding information in lower bit planes for imperceptible marking</td>
+<td>Copyright protection and authenticity verification without visible degradation</td>
+</tr>
+<tr>
+<th scope="row">Image forensics</th>
+<td>Detection of tampering through bit plane pattern analysis</td>
+<td>Verification of image authenticity for legal and journalistic purposes</td>
+</tr>
+<tr>
+<th scope="row">Texture analysis</th>
+<td>Multi-scale feature extraction from different bit plane levels</td>
+<td>Robust pattern recognition across varying illumination and contrast</td>
+</tr>
+<tr>
+<th scope="row">Astronomical imaging</th>
+<td>Noise reduction, faint object detection, dynamic range compression</td>
+<td>Enhanced visibility of dim celestial objects against noise</td>
+</tr>
+</tbody>
+</table>
+
+<p>Digital watermarking and steganography exploit the perceptual insignificance of lower bit planes to embed information within images without visible alteration. Copyright protection systems embed ownership information in the least significant bit planes, where modifications are imperceptible to human observers but can be extracted algorithmically to verify authenticity and ownership. This technique is used internationally to protect intellectual property in digital photography, artwork, and commercial imagery.</p>
+
+<p>Image segmentation techniques benefit from bit plane analysis by enabling multi-scale feature detection. Different bit planes capture features at different intensity scales, and processing multiple planes in combination allows segmentation algorithms to identify object boundaries more robustly than single-scale approaches. This capability is valuable in industrial quality control, where automated vision systems must identify defects across a range of sizes and contrasts, and in biological imaging, where cellular structures span multiple intensity levels.</p>
+
+<p>Computational imaging systems in smartphones and digital cameras increasingly incorporate bit plane concepts in their processing pipelines. High dynamic range imaging combines multiple exposures, and bit plane techniques help merge these exposures by prioritising the most significant information from each source image. Noise reduction algorithms analyse lower bit planes to characterise sensor noise patterns, then suppress this noise whilst preserving genuine image detail in higher planes. These techniques operate transparently to users but significantly enhance image quality in challenging lighting conditions.</p>
+
+<p>Forensic image analysis uses bitplane analysis to detect tampering and verify authenticity. Manipulated images often show anomalies in lower bit plane patterns, where editing software may introduce artifacts or fail to preserve the noise characteristics of genuine photographs. Law enforcement agencies, news organisations, and legal professionals internationally employ these techniques to verify the integrity of photographic evidence and detect sophisticated forgeries.</p>
+
+<p>Astronomical imaging presents unique challenges that bitplane techniques help address. Telescope images often contain extremely faint objects barely above noise levels. By analysing bit planes separately, astronomers can apply aggressive noise reduction to lower planes whilst preserving subtle features in higher planes, revealing celestial objects that would be invisible in standard processing. This capability has contributed to discoveries of distant galaxies, asteroids, and other phenomena at the limits of detection.</p>
+
+<p>Industrial applications including quality control, materials inspection, and automated manufacturing use bitplane compression to manage the enormous image volumes generated by high-speed vision systems. Production lines may capture thousands of images per minute, and efficient compression is essential for storage and analysis. Bitplane techniques enable real-time compression with minimal computational overhead, ensuring that inspection systems can operate at production speeds without sacrificing defect detection capabilities.</p>
+
+<p>The international standardisation of bitplane techniques through organisations such as ISO and ITU ensures interoperability across systems and borders. Medical imaging standards like DICOM incorporate bitplane-aware compression options, allowing hospitals worldwide to exchange diagnostic images efficiently. Satellite data formats standardised through international cooperation enable researchers globally to access and analyse Earth observation data using consistent processing techniques. This standardisation amplifies the impact of bitplane techniques, making them foundational to global information infrastructure.</p>
+
+<p>For more detailed information on specific applications, consult our <a href="/faq">FAQ on bitplane decomposition</a> or review our <a href="/about-us">editorial standards and scope</a> to understand how we evaluate and present these techniques.</p>
+</section>
+
+<section id="next-steps">
+<h2>How to use this site</h2>
+
+<p>Bit Planes is designed as a focused reference for understanding bitplane decomposition, compression, and analysis techniques without requiring JavaScript, cookies, or external dependencies. The site architecture prioritises accessibility, clarity, and direct access to information through semantic HTML and progressive enhancement principles. Navigation is straightforward, with three primary pages addressing different aspects of bit plane technology and its applications.</p>
+
+<p>This homepage provides comprehensive coverage of fundamental concepts, workflows, and applications. It serves as the primary entry point for visitors seeking to understand what bit planes are, how bitplane decomposition works, and where these techniques are applied internationally. The content is structured to build understanding progressively, starting with definitions and moving through practical workflows to real-world applications across medical imaging, satellite systems, and computational imaging domains.</p>
+
+<p>The site operates without JavaScript to ensure maximum compatibility, accessibility, and performance. All interactive elements use native HTML features such as details and summary elements for expandable content. This approach guarantees that the site functions identically across all browsers, assistive technologies, and network conditions, from modern desktop systems to older mobile devices with limited capabilities. The absence of tracking scripts and external dependencies also ensures visitor privacy and eliminates third-party data collection.</p>
+
+<p>Content is organised to support multiple reading strategies. Visitors seeking quick answers to specific questions should start with the <a href="/faq">FAQ on bitplane decomposition</a>, which addresses common queries about compression efficiency, the relationship between bit planes and colour channels, and practical applications. Those interested in understanding our methodology, scope, and editorial standards will find detailed information on the <a href="/about-us">About Bit Planes</a> page, including our approach to defining technical terms and citing authoritative sources.</p>
+
+<table>
+<caption>Site navigation guide: pages, purposes, and key topics</caption>
+<thead>
+<tr>
+<th scope="col">Page</th>
+<th scope="col">Primary Intent</th>
+<th scope="col">Key Topics Covered</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">Home (this page)</th>
+<td>Comprehensive introduction to bit planes, decomposition workflows, and applications</td>
+<td>Bit plane fundamentals, bitplane decomposition process, comparison with colour channels, international applications, compression techniques</td>
+</tr>
+<tr>
+<th scope="row">FAQ</th>
+<td>Direct answers to common questions about bit planes and related techniques</td>
+<td>Definitions, compression benefits, relationship to colour channels, segmentation applications, practical use cases</td>
+</tr>
+<tr>
+<th scope="row">About Us</th>
+<td>Site mission, editorial methodology, quality standards, and contact information</td>
+<td>Scope and audience, explanation approach, citation policy, accessibility commitment, reuse guidance</td>
+</tr>
+</tbody>
+</table>
+
+<p>The site's design follows Swiss typography principles, emphasising clarity, hierarchy, and efficient use of space. Generous whitespace, consistent spacing, and a limited colour palette reduce cognitive load and allow content to remain the focus. Typography scales responsively across device sizes using fluid sizing techniques, ensuring readability on screens from smartphones to large desktop monitors. High-contrast focus indicators support keyboard navigation, and semantic HTML structure enables screen readers to convey document organisation effectively.</p>
+
+<p>External links to authoritative sources including <a href="https://en.wikipedia.org/wiki/Bit_plane" rel="external">Wikipedia</a>, <a href="https://www.nist.gov/" rel="external">NIST</a>, and <a href="https://www.britannica.com/technology/digital-image-processing" rel="external">Encyclopaedia Britannica</a> provide pathways to additional technical detail and historical context. These links are marked with rel="external" attributes to indicate they lead outside the site. We select external references based on authority, stability, and relevance, favouring institutional and educational sources over commercial sites.</p>
+
+<p>Tables throughout the site use semantic markup with proper caption, thead, and tbody elements to ensure accessibility and clear structure. Column and row headers are explicitly marked with scope attributes, allowing assistive technologies to announce context as users navigate table cells. This attention to semantic correctness extends throughout the site, with appropriate use of article, section, aside, and other HTML5 structural elements to convey document organisation beyond visual presentation.</p>
+
+<p>The site is optimised for printing and offline reading. CSS print styles ensure that content flows naturally across pages with appropriate margins and typography. All content remains accessible without colour, supporting users with colour vision deficiencies and monochrome displays. Link URLs are preserved in print output, allowing readers to access referenced resources even from printed copies.</p>
+
+<p>For visitors interested in specific aspects of bitplane techniques, the following navigation paths are recommended. Those focused on practical implementation should read the workflow section on this page, then consult the FAQ for answers to common implementation questions. Researchers seeking to cite or reference this material should review the About page for information on our editorial standards and suggested citation formats. Educators looking for teaching resources will find the comparison table and applications sections particularly useful for illustrating concepts to students.</p>
+
+<p>Updates to the site occur periodically to incorporate new research findings, clarify explanations based on visitor feedback, and expand coverage of emerging applications. The core content on bit plane fundamentals remains stable, as these principles are well-established and unlikely to change. Application examples and external links are reviewed regularly to ensure accuracy and relevance. Visitors seeking the most current information should check the site directly rather than relying on cached or archived versions.</p>
+
+<p>We welcome feedback on content accuracy, clarity, and coverage. While the site does not include interactive forms or comment systems, visitors can provide feedback through the contact information provided on the <a href="/about-us">About Us</a> page. We particularly value corrections of technical errors, suggestions for additional topics to cover, and reports of accessibility issues that may affect specific user groups or assistive technologies.</p>
+
+<p>The site's commitment to simplicity and focus means that some topics related to image processing are deliberately excluded. We do not cover colour theory, camera optics, or general image editing techniques except where they directly relate to bit planes. This focused scope allows us to provide depth on bitplane decomposition and related techniques without diluting content with tangential material. Visitors seeking broader image processing education should consult the external references provided, which link to comprehensive resources covering the full spectrum of digital imaging topics.</p>
+</section>
+</main>
+
+<footer>
+<p>&copy; 2026 Bit Planes</p>
+</footer>
+</body>
+</html>
